@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="CrossDiff is a motion generation model trained on 3D and 2D motion. Offcial website of 'Realistic Human Motion Generation with Cross-Diffusion Models'">
+  <meta
+    name="keywords"
+    content="CrossDiff, motion generation, diffusion model, AIGC, cross modality, 3D and 2D"
+  />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Realistic Human Motion Generation with Cross-Diffusion Models</title>
+  <link rel="icon" type="image/x-icon" href="static/images/apple.ico" />
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script> -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">
+            Realistic Human Motion Generation <br />
+            with Cross-Diffusion Models
+          </h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://wonderno.github.io/">Zeping Ren</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=o31BPFsAAAAJ&hl=en">Shaoli Huang</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=Xrh1OIUAAAAJ&hl=zh-CN">Xiu Li</a><sup>1</sup>,
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Tsinghua Shenzhen International Graduate School,</span>
+            <span class="author-block"><sup>2</sup>Tencent AI Lab</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>paper</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code (Coming soon)</span>
+                  </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="hero-body">
+        <video id="teaser" autoplay muted loop height="100%">
+          <source src="./static/videos/teaser2.mp4"
+                  type="video/mp4">
+        </video>
+        <h5 class="subtitle has-text-centered">
+          Our method utilizing the cross-diffusion mechanism (Left) exhibits more full-body details compared to existing methods (Right).
+        </h5>
+        <!-- <h5 class="has-text-centered">
+          Darker color indicates later frames in the sequence. The green line or points indicate the input control signals.
+        </h5> -->
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+<!-- <section class="hero teaser"> -->
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We introduce the Cross Human Motion Diffusion Model (CrossDiff), a novel approach for generating high-quality human motion based on textual descriptions.
+            Our method integrates 3D and 2D information using a shared transformer network within the training of the diffusion model, unifying motion noise into a single feature space. 
+            This enables cross-decoding of features into both 3D and 2D motion representations, regardless of their original dimension. 
+            The primary advantage of CrossDiff is its cross-diffusion mechanism, which allows the model to reverse either 2D or 3D noise into clean motion during training. 
+            This capability leverages the complementary information in both motion representations, capturing intricate human movement details often missed by models relying solely on 3D information. 
+            Consequently, CrossDiff effectively combines the strengths of both representations to generate more realistic motion sequences. 
+            In our experiments, our model demonstrates competitive state-of-the-art performance on text-to-motion benchmarks. 
+            Moreover, our method consistently provides enhanced motion generation quality, capturing complex full-body movement intricacies. 
+            Additionally, our approach accommodates using 2D motion data without 3D motion ground truth during training to generate 3D motion, highlighting its potential for broader applications and efficient use of available data resources.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method</h2>
+        <div class="content has-text-justified">
+          <div class="column">
+            <img src="./static/images/arc.png" />
+          <p>
+            Overview of our CrossDiff framework for generating human motion from textual descriptions. 
+            The framework incorporates both 3D and 2D motion data, using unified encoding and cross-decoding components to process mixed representations obtained from random projection.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <br>
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Text-to-Motion</h2>
+    </div>
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item 4602">
+          <h5 class="subtitle">
+            person is dancing eloquently.
+          </h5>
+          <video poster="" id="swim" autoplay controls muted loop height="100%">
+            <source src="./static/videos/t2m/dance.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item 559">
+          <h5 class="subtitle">
+            a person marches forward, turns around, and then marches back.
+          </h5>
+          <video poster="" id="march" autoplay controls muted loop height="100%">
+            <source src="./static/videos/t2m/march.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item 277">
+          <h5 class="subtitle">
+            a person is swimming.
+          </h5>
+          <video poster="" id="dance" autoplay controls muted loop height="100%">
+            <source src="./static/videos/t2m/swim.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item 100">
+          <h5 class="subtitle">
+            a person walks wobbly down an incline.
+          </h5>
+          <video poster="" id="wobble" autoplay controls muted loop height="100%">
+            <source src="./static/videos/t2m/wobble.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item 100">
+          <h5 class="subtitle">
+            he is punching in a fight.
+          </h5>
+          <video poster="" id="fight" autoplay controls muted loop height="100%">
+            <source src="./static/videos/t2m/fight.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item 100">
+          <h5 class="subtitle">
+            a person walks forward, turns around and sits on a chair.
+          </h5>
+          <video poster="" id="sit" autoplay controls muted loop height="100%">
+            <source src="./static/videos/t2m/sit.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item 100">
+          <h5 class="subtitle">
+            a man rises from the ground, walks in a circle and sits back down on the ground.
+          </h5>
+          <video poster="" id="circle" autoplay controls muted loop height="100%">
+            <source src="./static/videos/t2m/circle.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item 100">
+          <h5 class="subtitle">
+            person got down and is crawling across the floor.
+          </h5>
+          <video poster="" id="crawl" autoplay controls muted loop height="100%">
+            <source src="./static/videos/t2m/crawl.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <!-- </div>
+        <div class="item 100">
+          <video poster="" id="pelvis4" autoplay controls muted loop height="100%">
+            <source src="./static/images/pelvis_duck_walk.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item 100">
+          <video poster="" id="pelvis5" autoplay controls muted loop height="100%">
+            <source src="./static/images/pelvis_step_hold.mp4"
+                    type="video/mp4"> -->
+          <!-- </video> -->
+        <!-- </div> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="hero teaser">
+  <br>
+  <div class="container is-max-desktop">
+    <!-- comparison. -->
+    <br>
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Comparing to other methods</h2>
+    </div>
+    <div class="content has-text-justified">
+      <p>
+        We compare our results with existing state-of-the-art methods. 
+        MDM (Tevet et al., 2022b) and MLD (Chen et al., 2023b) are based on diffusion models and T2M-GPT (Zhang et al., 2023) is based on VQ-VAE and GPT models.
+      </p>
+    </div>
+    <div class="content has-text-centered">
+      <video id="replay-video"
+              autoplay  
+              controls
+              muted
+              preload
+              loop
+              playsinline
+              width="100%">
+        <source src="./static/videos/comparison.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    
+    
+    <!--/ comparison. -->
+  </div>
+</section>
+
+
+
+<section class="hero is-light is-small">
+  <div class="container is-max-desktop">
+    <br>
+    <br>
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Comparisons of Sampling Methods</h2>
+    </div>
+    <div class="content has-text-justified">
+      <p>
+        Mixture sampling method is more aware of directions and its generation is more likely to point to the right direction. 
+        Standard sampling method is more steady since it samples all in the same domain.
+      </p>
+    </div>
+    
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content has-text-justified">
+          <p>
+            <b>Text prompt</b>: a person is stretching their arms forward.
+          </p>
+        </div>
+        <div class="columns is-centered">
+          <div class="column">
+            <h2 class="title is-4">Mixture Sampling</h2>
+            <video id="mixture_sampling" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/mix_sample1.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+          <div class="column">
+            <h2 class="title is-4">Standard Sampling</h2>
+            <video id="spatial" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/std_sample1.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="content has-text-justified">
+          <p>
+            <b>Text prompt</b>: a man does a handstand.
+          </p>
+        </div>
+        <div class="columns is-centered">
+    
+          <div class="column">
+            <h2 class="title is-4">Mixture Sampling</h2>
+            <video id="mixture_sampling" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/mix_sample2.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+          <div class="column">
+            <h2 class="title is-4">Standard Sampling</h2>
+            <video id="spatial" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/std_sample2.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    
+    
+<br>
+</section>
+
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <br>
+    <br>
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Effects of Learning from 2D Data</h2>
+    </div>
+    <div class="content has-text-justified">
+      <p>
+        Our model trained with out-of-domain 2D data learns to generate corresponding 3D motion, while original MDM fails to do so.
+      </p>
+    </div>
+
+    <div class="content has-text-justified">
+      <p>
+        <b>Text prompt</b>: a person lifts his body up by pulling on a bar.
+      </p>
+    </div>
+    <div class="columns is-centered">
+      <div class="column">
+        <video id="l2d1" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/l2d/gt1.mp4"
+                  type="video/mp4">
+        </video>
+        <h5 class="subtitle has-text-centered">
+          2D GT
+        </h5>
+      </div>
+      <div class="column">
+        <video id="l2d2" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/l2d/cd1.mp4"
+                  type="video/mp4">
+        </video>
+        <h5 class="subtitle has-text-centered">
+          Ours
+        </h5>
+      </div>
+      <div class="column">
+        <video id="l2d2" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/l2d/mdm1.mp4"
+                  type="video/mp4">
+        </video>
+        <h5 class="subtitle has-text-centered">
+          MDM
+        </h5>
+      </div>
+    </div>
+
+    <div class="content has-text-justified">
+      <p>
+        <b>Text prompt</b>: a person rides a bicycle.
+      </p>
+    </div>
+    <div class="columns is-centered">
+      <div class="column">
+        <video id="l2d1" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/l2d/gt2.mp4"
+                  type="video/mp4">
+        </video>
+        <h5 class="subtitle has-text-centered">
+          2D GT
+        </h5>
+      </div>
+      <div class="column">
+        <video id="l2d2" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/l2d/cd2.mp4"
+                  type="video/mp4">
+        </video>
+        <h5 class="subtitle has-text-centered">
+          Ours
+        </h5>
+      </div>
+      <div class="column">
+        <video id="l2d2" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/l2d/mdm2.mp4"
+                  type="video/mp4">
+        </video>
+        <h5 class="subtitle has-text-centered">
+          MDM
+        </h5>
+      </div>
+    </div>
+
+    <div class="content has-text-justified">
+      <p>
+        <b>Text prompt</b>: a man hits the ball back and forth over a table.
+      </p>
+    </div>
+    <div class="columns is-centered">
+      <div class="column">
+        <video id="l2d1" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/l2d/gt3.mp4"
+                  type="video/mp4">
+        </video>
+        <h5 class="subtitle has-text-centered">
+          2D GT
+        </h5>
+      </div>
+      <div class="column">
+        <video id="l2d2" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/l2d/cd3.mp4"
+                  type="video/mp4">
+        </video>
+        <h5 class="subtitle has-text-centered">
+          Ours
+        </h5>
+      </div>
+      <div class="column">
+        <video id="l2d2" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/l2d/mdm3.mp4"
+                  type="video/mp4">
+        </video>
+        <h5 class="subtitle has-text-centered">
+          MDM
+        </h5>
+      </div>
+    </div>
+
+    <div class="content has-text-justified">
+      <p>
+        <b>Text prompt</b>: the man throws a baseball hard.
+      </p>
+    </div>
+    <div class="columns is-centered">
+      <div class="column">
+        <video id="l2d1" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/l2d/gt4.mp4"
+                  type="video/mp4">
+        </video>
+        <h5 class="subtitle has-text-centered">
+          2D GT
+        </h5>
+      </div>
+      <div class="column">
+        <video id="l2d2" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/l2d/cd4.mp4"
+                  type="video/mp4">
+        </video>
+        <h5 class="subtitle has-text-centered">
+          Ours
+        </h5>
+      </div>
+      <div class="column">
+        <video id="l2d2" autoplay controls muted loop playsinline height="100%">
+          <source src="./static/videos/l2d/mdm4.mp4"
+                  type="video/mp4">
+        </video>
+        <h5 class="subtitle has-text-centered">
+          MDM
+        </h5>
+      </div>
+    </div>
+    
+    
+<br>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="container is-max-desktop">
+    <br>
+    <br>
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Effects of Root-decoupled Diffusion</h2>
+    </div>
+    <div class="content has-text-justified">
+      <p>
+        The root-decoupled module guides the model to generate root positions based on local pose, thereby enhancing the precision of root generation.
+      </p>
+    </div>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content has-text-justified">
+          <p>
+            <b>Text prompt</b>: a person lifts his body up by pulling on a bar.
+          </p>
+        </div>
+        <div class="columns is-centered">
+          <div class="column">
+            <h2 class="title is-4">w/ root-decoupled diffusion</h2>
+            <video id="mixture_sampling" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/w_rd1.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+          <div class="column">
+            <h2 class="title is-4">w/o root-decoupled diffusion</h2>
+            <video id="spatial" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/wo_rd1.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="content has-text-justified">
+          <p>
+            <b>Text prompt</b>: a person rides a bicycle.
+          </p>
+        </div>
+        <div class="columns is-centered">
+          <div class="column">
+            <h2 class="title is-4">w/ root-decoupled diffusion</h2>
+            <video id="mixture_sampling" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/w_rd2.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+          <div class="column">
+            <h2 class="title is-4">w/o root-decoupled diffusion</h2>
+            <video id="spatial" autoplay controls muted loop playsinline height="100%">
+              <source src="./static/videos/wo_rd2.mp4"
+                      type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    
+
+    
+    
+<br>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>...</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <!-- <div class="content has-text-centered">
+      <a class="icon-link"
+         href="https://homes.cs.washington.edu/~kpar/nerfies/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div> -->
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Thanks to <a href="https://keunhong.com/">Keunhong Park</a> for the <a href="https://nerfies.github.io/">website template</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

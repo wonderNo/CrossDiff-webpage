@@ -129,6 +129,39 @@
   <div class="hero-body">
 <!-- <section class="hero teaser"> -->
   <div class="container is-max-desktop">
+    <!-- comparison. -->
+    <br>
+    <div class="columns is-centered has-text-centered">
+      <h2 class="title is-3">Comparing to other methods</h2>
+    </div>
+    <div class="content has-text-justified">
+      <p>
+        We compare our results with existing state-of-the-art methods. 
+        MDM (Tevet et al., 2022b) and MLD (Chen et al., 2023b) are based on diffusion models and T2M-GPT (Zhang et al., 2023) is based on VQ-VAE and GPT models.
+      </p>
+    </div>
+    <div class="content has-text-centered">
+      <video id="replay-video"
+              autoplay  
+              controls
+              muted
+              preload
+              loop
+              playsinline
+              width="100%">
+        <source src="./static/videos/demo2.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+    
+    
+    <!--/ comparison. -->
+  </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
@@ -149,12 +182,13 @@
       </div>
     </div>
     <!--/ Abstract. -->
-  </div>
+
   </div>
 </section>
 
 
-<section class="section">
+
+<section class="hero is-light is-small">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
@@ -174,7 +208,7 @@
 </section>
 
 
-<section class="hero is-light is-small">
+<section class="hero teaser">
   <div class="hero-body">
     <br>
     <div class="columns is-centered has-text-centered">
@@ -273,342 +307,6 @@
 </section>
 
 
-
-<section class="hero teaser">
-  <br>
-  <div class="container is-max-desktop">
-    <!-- comparison. -->
-    <br>
-    <div class="columns is-centered has-text-centered">
-      <h2 class="title is-3">Comparing to other methods</h2>
-    </div>
-    <div class="content has-text-justified">
-      <p>
-        We compare our results with existing state-of-the-art methods. 
-        MDM (Tevet et al., 2022b) and MLD (Chen et al., 2023b) are based on diffusion models and T2M-GPT (Zhang et al., 2023) is based on VQ-VAE and GPT models.
-      </p>
-    </div>
-    <div class="content has-text-centered">
-      <video id="replay-video"
-              autoplay  
-              controls
-              muted
-              preload
-              loop
-              playsinline
-              width="100%">
-        <source src="./static/videos/comparison.mp4"
-                type="video/mp4">
-      </video>
-    </div>
-    
-    
-    <!--/ comparison. -->
-  </div>
-</section>
-
-
-
-<section class="hero is-light is-small">
-  <div class="container is-max-desktop">
-    <br>
-    <br>
-    <div class="columns is-centered has-text-centered">
-      <h2 class="title is-3">Comparisons of Sampling Methods</h2>
-    </div>
-    <div class="content has-text-justified">
-      <p>
-        Mixture sampling method is more aware of directions and its generation is more likely to point to the right direction. 
-        Standard sampling method is more steady since it samples all in the same domain.
-      </p>
-    </div>
-    
-    <div class="columns is-centered">
-      <div class="column">
-        <div class="content has-text-justified">
-          <p>
-            <b>Text prompt</b>: a person is stretching their arms forward.
-          </p>
-        </div>
-        <div class="columns is-centered">
-          <div class="column">
-            <h2 class="title is-4">Mixture Sampling</h2>
-            <video id="mixture_sampling" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/mix_sample1.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-          <div class="column">
-            <h2 class="title is-4">Standard Sampling</h2>
-            <video id="spatial" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/std_sample1.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-        </div>
-      </div>
-
-      <div class="column">
-        <div class="content has-text-justified">
-          <p>
-            <b>Text prompt</b>: a man does a handstand.
-          </p>
-        </div>
-        <div class="columns is-centered">
-    
-          <div class="column">
-            <h2 class="title is-4">Mixture Sampling</h2>
-            <video id="mixture_sampling" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/mix_sample2.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-          <div class="column">
-            <h2 class="title is-4">Standard Sampling</h2>
-            <video id="spatial" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/std_sample2.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-        </div>
-
-      </div>
-
-
-    </div>
-
-
-    
-    
-<br>
-</section>
-
-
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <br>
-    <br>
-    <div class="columns is-centered has-text-centered">
-      <h2 class="title is-3">Effects of Learning from 2D Data</h2>
-    </div>
-    <div class="content has-text-justified">
-      <p>
-        Our model trained with out-of-domain 2D data learns to generate corresponding 3D motion, while original MDM fails to do so.
-      </p>
-    </div>
-
-    <div class="content has-text-justified">
-      <p>
-        <b>Text prompt</b>: a person lifts his body up by pulling on a bar.
-      </p>
-    </div>
-    <div class="columns is-centered">
-      <div class="column">
-        <video id="l2d1" autoplay controls muted loop playsinline height="100%">
-          <source src="./static/videos/l2d/gt1.mp4"
-                  type="video/mp4">
-        </video>
-        <h5 class="subtitle has-text-centered">
-          2D GT
-        </h5>
-      </div>
-      <div class="column">
-        <video id="l2d2" autoplay controls muted loop playsinline height="100%">
-          <source src="./static/videos/l2d/cd1.mp4"
-                  type="video/mp4">
-        </video>
-        <h5 class="subtitle has-text-centered">
-          Ours
-        </h5>
-      </div>
-      <div class="column">
-        <video id="l2d2" autoplay controls muted loop playsinline height="100%">
-          <source src="./static/videos/l2d/mdm1.mp4"
-                  type="video/mp4">
-        </video>
-        <h5 class="subtitle has-text-centered">
-          MDM
-        </h5>
-      </div>
-    </div>
-
-    <div class="content has-text-justified">
-      <p>
-        <b>Text prompt</b>: a person rides a bicycle.
-      </p>
-    </div>
-    <div class="columns is-centered">
-      <div class="column">
-        <video id="l2d1" autoplay controls muted loop playsinline height="100%">
-          <source src="./static/videos/l2d/gt2.mp4"
-                  type="video/mp4">
-        </video>
-        <h5 class="subtitle has-text-centered">
-          2D GT
-        </h5>
-      </div>
-      <div class="column">
-        <video id="l2d2" autoplay controls muted loop playsinline height="100%">
-          <source src="./static/videos/l2d/cd2.mp4"
-                  type="video/mp4">
-        </video>
-        <h5 class="subtitle has-text-centered">
-          Ours
-        </h5>
-      </div>
-      <div class="column">
-        <video id="l2d2" autoplay controls muted loop playsinline height="100%">
-          <source src="./static/videos/l2d/mdm2.mp4"
-                  type="video/mp4">
-        </video>
-        <h5 class="subtitle has-text-centered">
-          MDM
-        </h5>
-      </div>
-    </div>
-
-    <div class="content has-text-justified">
-      <p>
-        <b>Text prompt</b>: a man hits the ball back and forth over a table.
-      </p>
-    </div>
-    <div class="columns is-centered">
-      <div class="column">
-        <video id="l2d1" autoplay controls muted loop playsinline height="100%">
-          <source src="./static/videos/l2d/gt3.mp4"
-                  type="video/mp4">
-        </video>
-        <h5 class="subtitle has-text-centered">
-          2D GT
-        </h5>
-      </div>
-      <div class="column">
-        <video id="l2d2" autoplay controls muted loop playsinline height="100%">
-          <source src="./static/videos/l2d/cd3.mp4"
-                  type="video/mp4">
-        </video>
-        <h5 class="subtitle has-text-centered">
-          Ours
-        </h5>
-      </div>
-      <div class="column">
-        <video id="l2d2" autoplay controls muted loop playsinline height="100%">
-          <source src="./static/videos/l2d/mdm3.mp4"
-                  type="video/mp4">
-        </video>
-        <h5 class="subtitle has-text-centered">
-          MDM
-        </h5>
-      </div>
-    </div>
-
-    <div class="content has-text-justified">
-      <p>
-        <b>Text prompt</b>: the man throws a baseball hard.
-      </p>
-    </div>
-    <div class="columns is-centered">
-      <div class="column">
-        <video id="l2d1" autoplay controls muted loop playsinline height="100%">
-          <source src="./static/videos/l2d/gt4.mp4"
-                  type="video/mp4">
-        </video>
-        <h5 class="subtitle has-text-centered">
-          2D GT
-        </h5>
-      </div>
-      <div class="column">
-        <video id="l2d2" autoplay controls muted loop playsinline height="100%">
-          <source src="./static/videos/l2d/cd4.mp4"
-                  type="video/mp4">
-        </video>
-        <h5 class="subtitle has-text-centered">
-          Ours
-        </h5>
-      </div>
-      <div class="column">
-        <video id="l2d2" autoplay controls muted loop playsinline height="100%">
-          <source src="./static/videos/l2d/mdm4.mp4"
-                  type="video/mp4">
-        </video>
-        <h5 class="subtitle has-text-centered">
-          MDM
-        </h5>
-      </div>
-    </div>
-    
-    
-<br>
-</section>
-
-<section class="hero is-light is-small">
-  <div class="container is-max-desktop">
-    <br>
-    <br>
-    <div class="columns is-centered has-text-centered">
-      <h2 class="title is-3">Effects of Root-decoupled Diffusion</h2>
-    </div>
-    <div class="content has-text-justified">
-      <p>
-        The root-decoupled module guides the model to generate root positions based on local pose, thereby enhancing the precision of root generation.
-      </p>
-    </div>
-    <div class="columns is-centered">
-      <div class="column">
-        <div class="content has-text-justified">
-          <p>
-            <b>Text prompt</b>: a person lifts his body up by pulling on a bar.
-          </p>
-        </div>
-        <div class="columns is-centered">
-          <div class="column">
-            <h2 class="title is-4">w/ root-decoupled diffusion</h2>
-            <video id="mixture_sampling" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/w_rd1.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-          <div class="column">
-            <h2 class="title is-4">w/o root-decoupled diffusion</h2>
-            <video id="spatial" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/wo_rd1.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-        </div>
-      </div>
-
-      <div class="column">
-        <div class="content has-text-justified">
-          <p>
-            <b>Text prompt</b>: a person rides a bicycle.
-          </p>
-        </div>
-        <div class="columns is-centered">
-          <div class="column">
-            <h2 class="title is-4">w/ root-decoupled diffusion</h2>
-            <video id="mixture_sampling" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/w_rd2.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-          <div class="column">
-            <h2 class="title is-4">w/o root-decoupled diffusion</h2>
-            <video id="spatial" autoplay controls muted loop playsinline height="100%">
-              <source src="./static/videos/wo_rd2.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-        </div>
-      </div>
-
-    </div>
-    
-
-    
-    
-<br>
-</section>
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
