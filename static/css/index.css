@@ -27,7 +27,24 @@ body {
   font-family: 'Google Sans', sans-serif;
 }
 
+ /* 父容器设定宽高比为16:9 */
+ .video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio (9/16 = 0.5625) */
+  height: 0;
+  overflow: hidden;
+}
 
+/* 内部的iframe自适应容器大小 */
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
 .publication-title {
 }
 
